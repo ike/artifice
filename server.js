@@ -34,6 +34,9 @@ if (!config.storage) {
 if (!config.storage.type) {
   config.storage.type = 'file';
 }
+if (!config.auth) {
+  config.auth = { type: 'none' };
+}
 
 var Store, preferredStore;
 
@@ -46,6 +49,11 @@ else {
   Store = require('./lib/document_stores/' + config.storage.type);
   preferredStore = new Store(config.storage);
 }
+
+var Auth, authHandler;
+
+Auth = require('./lib/auth_handlers/' + config.auth.type);
+authHandler = new Auth(config.auth);
 
 // Compress the static javascript assets
 if (config.recompressStaticAssets) {
@@ -111,16 +119,20 @@ connect.createServer(
     });
     // add documents
     app.post('/documents', function(request, response, next) {
-      return documentHandler.handlePost(request, response);
+      return authHandler.set(request, response, function () {
+        return documentHandler.handlePost(request, response);
+      });
     });
     // get documents
     app.get('/documents/:id', function(request, response, next) {
       var skipExpire = !!config.documents[request.params.id];
-      return documentHandler.handleGet(
-        request.params.id,
-        response,
-        skipExpire
-      );
+      return authHandler.get(request, response, function () {
+        return documentHandler.handleGet(
+          request.params.id,
+          response,
+          skipExpire
+        );
+      });
     });
   }),
   // Otherwise, static

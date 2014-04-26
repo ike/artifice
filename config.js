@@ -18,6 +18,11 @@
     "type": "file",
     "path": "/var/local/artifices"
   },
+  "auth": {
+    "type": "environment",
+    "env": "ARTIFICERS",
+    "realm": "Artifice"
+  },
   "documents": {
     "about": "./about.md"
   }
