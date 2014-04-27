@@ -40,7 +40,7 @@
     "paste",
     "pastebin"
   ],
-  "main": "haste",
+  "main": "server",
   "private": true,
   "scripts": {
     "start": "node server.js",
