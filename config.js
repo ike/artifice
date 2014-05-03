@@ -15,8 +15,8 @@
     "type": "phonetic"
   },
   "storage": {
-    "type": "file",
-    "path": "/var/local/artifices"
+    "type": "level",
+    "db": "/var/local/artifices"
   },
   "auth": {
     "type": "environment",
