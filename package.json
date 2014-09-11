@@ -30,7 +30,7 @@
     "lib": "./lib"
   },
   "engines": {
-    "node": "0.10.26"
+    "node": "0.10.*"
   },
   "files": [
     "server.js",
