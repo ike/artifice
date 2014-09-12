@@ -1,5 +1,5 @@
 {
-  "host": "0.0.0.0",
+  "host": "localhost",
   "port": 7777,
   "keyLength": 10,
   "staticMaxAge": 86400,
