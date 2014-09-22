@@ -16,7 +16,7 @@
   },
   "storage": {
     "type": "level",
-    "db": "/var/local/artifices"
+    "db": "artifices"
   },
   "auth": {
     "type": "environment",
